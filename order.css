@@ -1,0 +1,368 @@
+@import url('https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #fef0d3;
+  color: #333;
+  line-height: 1.6;
+}
+
+.site-header {
+  background: #8b5a2b;
+  color: white;
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: white;
+  text-decoration: none;
+}
+
+.search-bar input {
+  padding: 10px 20px;
+  width: 320px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.cart-icon {
+  position: relative;
+  font-size: 1.8rem;
+  text-decoration: none;
+  color: white;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #e63939;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: bold;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Book Header */
+.book-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  align-items: flex-start;
+  margin-bottom: 60px;
+}
+
+.book-image {
+  flex: 1;
+  min-width: 280px;
+  text-align: center;
+}
+
+.book-image img {
+  width: 100%;
+  max-width: 320px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  border-radius: 8px;
+}
+
+.book-info {
+  flex: 2;
+  min-width: 300px;
+}
+
+.book-title {
+  font-size: 3.8rem;
+  font-weight: 900;
+  color: #81522e;
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+
+.book-author {
+  font-size: 1.9rem;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+/* Price and Stars */
+.price-rating {
+  margin-bottom: 30px;
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #d97757;
+  margin-bottom: 8px;
+}
+
+.stars {
+  font-size: 1.5rem;
+  color: #f4c542;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.review-count {
+  font-size: 1rem;
+  color: #777;
+  font-weight: normal;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 14px 32px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-buy {
+  background: #81522e;
+  color: white;
+}
+
+.btn-buy:hover {
+  background: #c16a4a;
+  transform: translateY(-3px);
+}
+
+.btn-cart {
+  background: transparent;
+  color: #8b5a2b;
+  border: 2px solid #8b5a2b;
+}
+
+.btn-cart:hover {
+  background: #d97757;
+  color: white;
+}
+
+/* Summary Section */
+.summary-section {
+  background: #8b5a2b;
+  color: white;
+  padding: 50px 40px;
+  border-radius: 12px;
+  margin-bottom: 80px;
+}
+
+.summary-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #f5e8d3;
+}
+
+.summary-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 800px;
+}
+
+/* Floating Buttons */
+.floating-buttons {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 1000;
+}
+
+.float-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.float-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+.heart {
+  color: #e63939;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .book-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .book-title {
+    font-size: 2.3rem;
+  }
+  .price {
+    font-size: 1.8rem;
+  }
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background:#fef0d3;
+  padding: 35px 30px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+.modal-content h2 {
+  margin-bottom: 8px;
+  color:#81522e;
+}
+
+.modal-subtitle {
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.format-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.format-btn {
+  flex: 1;                    /* Makes both buttons equal width */
+  padding: 15px 10px;
+  background: #8b5a2b;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 90px;          /* Ensures same height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.format-btn:hover {
+  background: #fcfbfb;
+  color: #81522e;
+  transform: translateY(-3px);
+}
+
+.format-btn .price {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fef0d3;
+
+ 
+  margin-top: 6px;
+}
+
+.format-btn:hover .price {
+  color: #81522e;
+}
+
+.close-btn {
+  background: #ccc;
+  color: #333;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background: #999;
+  color: white;
+}
+
+strong{
+    color: #fef0d3;
+}
+
+strong :hover{
+    color: #81522e;
+}

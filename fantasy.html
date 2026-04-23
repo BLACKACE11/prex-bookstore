@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thriller - Prex Bookstore</title>
+  <link rel="stylesheet" href="catalogue.css">   <!-- Use the same CSS as catalogue -->
+</head>
+<body>
+
+  <!-- Header (same as catalogue) -->
+  <header class="site-header">
+  <div class="header-container">
+    <a href="index.html" class="logo">Prex</a>
+    
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search books...">
+    </div>
+
+    <div class="header-actions">
+      <a href="index.html" class="nav-link">Home</a>
+
+      <a href="catalogue.html" class="nav-link">All Books</a>
+      
+      <!-- Cart Icon with Count -->
+      <a href="cart.html" class="cart-icon">
+        🛒
+        <span id="cart-count" class="cart-count">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+  <div class="books-section">
+    <h2>Fantasy Books</h2>
+    
+    <div class="book-row">
+
+      <!-- Example Thriller Books - Add your own -->
+      <a href="tagyoureit.html" class="book-card">
+        <img src="images/tagyoureit.jpg" alt="Tag You're It">
+        <h3>Tag You're It!</h3>
+        <p class="price">$24</p>
+      </a>
+
+      <a href="sly.html" class="book-card">
+        <img src="images/sly.jpg" alt="SLY">
+        <h3>SLY</h3>
+        <p class="price">$22</p>
+      </a>
+
+      <!-- Add more thriller books here -->
+      <!-- Example placeholder -->
+      <a href="boyslikeus.html" class="book-card">
+        <img src="images/boyslikeus.jpg" alt="Boys Like Us">
+        <h3>Boys Like Us</h3>
+        <p class="price">$25</p>
+      </a>
+
+    </div>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById("searchInput");
+const books = document.querySelectorAll(".book-card",);
+
+searchInput.addEventListener("input", () => {
+    let value = searchInput.value.toLowerCase();
+    let firstMatch = null;
+
+    books.forEach(book => {
+        let title = book.querySelector("h3").textContent.toLowerCase();
+
+        if (value === "") {
+            book.classList.remove("blur", "highlight");
+        } 
+        else if (title.includes(value)) {
+            book.classList.remove("blur");
+            book.classList.add("highlight");
+
+            // store first match
+            if (!firstMatch) {
+                firstMatch = book;
+            }
+        } 
+        else {
+            book.classList.add("blur");
+            book.classList.remove("highlight");
+        }
+    });
+
+      // 🔥 SCROLL TO FIRST MATCH
+    if (firstMatch) {
+        firstMatch.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }
+});
+
+    // Cart count update (same as before)
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const countEl = document.getElementById('cart-count');
+      if (countEl) countEl.textContent = cart.length;
+    }
+    window.addEventListener('load', updateCartCount);
+  </script>
+
+</body>
+</html>
+

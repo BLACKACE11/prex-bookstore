@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Prex Book Store</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://js.stripe.com/v3/"></script>
+  <style>
+   .payment-container {
+  max-width: 520px;
+  margin: 60px auto;
+  padding: 40px 30px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.payment-container h2 {
+  margin-bottom: 8px;
+}
+
+#book-info {
+  font-size: 1.25rem;
+  margin-bottom: 35px;
+  color: #333;
+}
+
+/* Centered Payment Options */
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;           /* Centers the options */
+  margin-bottom: 30px;
+}
+
+.payment-option {
+  width: 100%;
+  max-width: 420px;              /* Keeps them from stretching too wide */
+  padding: 18px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  background: #f8f8f8;
+  cursor: pointer;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+.payment-option:hover {
+  border-color: #635bff;
+  background: #f0f0ff;
+}
+
+.payment-option.active {
+  border-color: #635bff;
+  background: #f0f0ff;
+  box-shadow: 0 0 0 3px rgba(99, 91, 255, 0.15);
+}
+
+/* Card Input Area */
+#card-element-container {
+  margin: 25px 0;
+}
+
+#card-element {
+  border: 1px solid #ddd;
+  padding: 14px;
+  border-radius: 10px;
+  background: #fafafa;
+}
+
+/* Pay Now Button */
+#payButton {
+  background: #635bff;
+  color: white;
+  padding: 16px 32px;
+  font-size: 1.25rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 420px;
+  margin: 20px auto 0;
+  display: block;
+}
+
+#payButton:hover {
+  background: #4f46e5;
+}
+    #message { margin-top: 15px; color: red; }
+  </style>
+</head>
+<body>
+
+<div class="payment-container">
+  <h2>Checkout</h2>
+  <p id="book-info" style="font-size: 1.2rem; margin: 20px 0; min-height: 60px;"></p>
+
+  <div class="payment-options">
+    <div class="payment-option active" id="card-option" onclick="selectMethod('card')">💳 Credit / Debit Card</div>
+    <div class="payment-option" id="googlepay-option" onclick="selectMethod('googlepay')">🅖 Google Pay</div>
+    <div class="payment-option" id="bank-option" onclick="selectMethod('bank')">🏦 Bank Transfer</div>
+  </div>
+
+  <div id="card-element-container">
+    <div id="card-element" style="border:1px solid #ddd; padding:12px; border-radius:8px; margin:20px 0;"></div>
+  </div>
+
+  <button id="payButton">Pay Now</button>
+  <p id="message"></p>
+</div>
+
+<script>
+  const stripe = Stripe('pk_test_51...');   // ← Your Publishable Key
+  let elements, selectedMethod = 'card';
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const isCartCheckout = urlParams.get('cart') === 'true';
+  let totalAmount = 0;
+  let bookTitle = "Your Order";
+
+  // Handle two different flows
+  if (isCartCheckout) {
+    totalAmount = parseFloat(urlParams.get('total')) || 0;
+    bookTitle = "Cart Checkout";
+  } else {
+    // Single book from Buy Now
+    totalAmount = parseFloat(urlParams.get('price')) || 0;
+    bookTitle = decodeURIComponent(urlParams.get('title') || 'Book');
+  }
+
+  // Display order summary
+  document.getElementById('book-info').innerHTML = `
+    <strong>${bookTitle}</strong><br>
+    Total Amount: <strong>$${totalAmount.toFixed(2)}</strong>
+  `;
+
+  async function initializeStripe() {
+    elements = stripe.elements();
+    const cardElement = elements.create('card');
+    cardElement.mount('#card-element');
+  }
+
+  function selectMethod(method) {
+    selectedMethod = method;
+    document.querySelectorAll('.payment-option').forEach(el => el.classList.remove('active'));
+    document.getElementById(method + '-option').classList.add('active');
+    document.getElementById('card-element-container').style.display = (method === 'card') ? 'block' : 'none';
+  }
+
+  document.getElementById('payButton').addEventListener('click', async () => {
+    const button = document.getElementById('payButton');
+    const messageEl = document.getElementById('message');
+
+    if (totalAmount <= 0) {
+      messageEl.textContent = "Error: Invalid amount. Please go back and try again.";
+      return;
+    }
+
+    button.disabled = true;
+    button.textContent = 'Processing...';
+
+    try {
+      if (selectedMethod === 'bank') {
+        alert(`Bank Transfer selected.\nPlease transfer $${totalAmount.toFixed(2)}\nSend proof to support@prex.com`);
+        completePurchase();
+        return;
+      }
+
+      // Call backend
+      const response = await fetch('http://localhost:3000/create-payment-intent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          amount: totalAmount, 
+          isCart: isCartCheckout 
+        })
+      });
+
+      const { clientSecret } = await response.json();
+
+      const { error } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement('card'),
+          billing_details: { name: 'Customer' }
+        }
+      });
+
+      if (error) {
+        messageEl.textContent = error.message;
+      } else {
+        completePurchase();
+      }
+    } catch (err) {
+      messageEl.textContent = 'Payment failed. Please try again.';
+      console.error(err);
+    } finally {
+      button.disabled = false;
+      button.textContent = `Pay Now - $${totalAmount.toFixed(2)}`;
+    }
+  });
+
+  function completePurchase() {
+    alert('✅ Payment Successful!');
+
+    let purchased = JSON.parse(localStorage.getItem('purchasedBooks')) || {};
+
+    if (isCartCheckout) {
+      // Clear cart and mark all items as purchased
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.forEach(item => {
+        purchased[item.id || Date.now()] = {
+          title: item.title,
+          format: item.format,
+          price: item.price,
+          image: 'images/{bookId}.jpg'
+        };
+      });
+      localStorage.setItem('purchasedBooks', JSON.stringify(purchased));
+      if (isFromCart) localStorage.removeItem('cart');
+      window.location.href = 'my-books.html'
+    } else {
+      // Single book purchase
+      const bookId = urlParams.get('book');
+      purchased[bookId] = {
+        title: bookTitle,
+        format: urlParams.get('format') || 'soft',
+        price: totalAmount
+      };
+    }
+
+    localStorage.setItem('purchasedBooks', JSON.stringify(purchased));
+    window.location.href = 'my-books.html';
+  }
+
+
+
+  window.onload = () => {
+    initializeStripe();
+    selectMethod('card');
+  };
+</script>
+</body>
+</html>

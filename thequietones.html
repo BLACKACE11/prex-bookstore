@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tag, You're It! - Prex Book Store</title>
+  <link rel="stylesheet" href="../order.css">
+  <!--style>
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 420px;
+      text-align: center;
+    }
+    .format-btn {
+      width: 100%;
+      padding: 18px;
+      margin: 10px 0;
+      background: #f8f5f0;
+      border: 2px solid #d97757;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+    .format-btn:hover {
+      background: #d97757;
+      color: white;
+    }
+  style-->
+</head>
+<body>
+
+   <header class="site-header">
+  <div class="header-container">
+    <a href="index.html" class="logo">Prex</a>
+
+    <div class="header-actions">
+      <a href="catalogue.html" class="nav-link">Catalogue</a>
+      
+      <!-- Cart Icon with Count -->
+      <a href="cart.html" class="cart-icon">
+        🛒
+        <span id="cart-count" class="cart-count">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+  <div class="container">
+    <div class="book-header">
+      <div class="book-image">
+        <img src="../images/thequietonesorder.jpg" alt="The Quiet Ones">
+      </div>
+
+      <div class="book-info">
+        <h1 class="book-title">The Quiet Ones</h1>
+        <p class="book-author">by Precious Chinyere Iweka</p>
+        <div class="price-rating">
+          <p class="price">$21</p>
+          <div class="stars">☆ ☆ ☆ ☆ ☆ <span class="review-count">(0 reviews)</span></div>
+        </div>
+
+        <div class="buttons">
+          <button class="btn btn-buy" onclick="showFormatModal('buy')">Buy Now</button>
+          <button class="btn btn-cart" onclick="showFormatModal('cart')">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="summary-section">
+      <h2>Book Summary</h2>
+      <p class="summary-text">
+        In a vibrant Lagos filled with laughter, secrets, and late-night hangouts, four young men navigate friendship, love, heartbreak, and the pressure of becoming adults. 
+        When one of them falls for a girl who seems out of reach, their tight bond is tested like never before. In a vibrant Lagos filled with laughter, secrets, and late-night hangouts, four young men navigate friendship, love, heartbreak, and the pressure of becoming adults. 
+        When one of them falls for a girl who seems out of reach, their tight bond is tested like never before. In a vibrant Lagos filled with laughter, secrets, and late-night hangouts, four young men navigate friendship, love, heartbreak, and the pressure of becoming adults. 
+        When one of them falls for a girl who seems out of reach, their tight bond is tested like never before. In a vibrant Lagos filled with laughter, secrets, and late-night hangouts, four young men navigate friendship, love, heartbreak, and the pressure of becoming adults. 
+        When one of them falls for a girl who seems out of reach, their tight bond is tested like never before. In a vibrant Lagos filled with laughter, secrets, and late-night hangouts, four young men navigate friendship, love, heartbreak, and the pressure of becoming adults. 
+        When one of them falls for a girl who seems out of reach, their tight bond is tested like never before. In a vibrant Lagos filled with laughter, secrets, and late-night hangouts, four young men navigate friendship, love, heartbreak, and the pressure of becoming adults. 
+        When one of them falls for a girl who seems out of reach, their tight bond is tested like never before. 
+        <strong>The Quiet Ones</strong> is a heartfelt coming-of-age story about brotherhood, loyalty, and the messy beauty of growing up.
+      </p>
+    </div>
+  </div>
+
+  <!-- Format Selection Modal -->
+<div id="formatModal" class="modal">
+  <div class="modal-content">
+    <h2>Choose Format</h2>
+    <p class="modal-subtitle">Select Hard Copy or Soft Copy</p>
+
+    <div class="format-options">
+      <button class="format-btn" onclick="handleFormatSelection('hard')">
+        <strong>Hard Copy</strong><br>
+        <span class="price">$25</span>
+      </button>
+
+      <button class="format-btn" onclick="handleFormatSelection('soft')">
+        <strong>Soft Copy</strong><br>
+        <span class="price">$21</span>
+      </button>
+    </div>
+
+    <button class="close-btn" onclick="closeModal()">Cancel</button>
+  </div>
+</div>
+
+   <!-- Floating Buttons -->
+<div class="floating-buttons">
+  <div class="float-btn heart" onclick="toggleWishlist()" title="Add to Wishlist">❤️</div>
+</div>
+
+
+  <script>
+    function updateCartCount(){
+      const cart = JSON.parse(localStorage.getItem('cart'))
+      const countEl = document.getElementById('cart-count');
+      if (countEl){
+        countEl.textContent = cart.length;
+      }
+    }
+    let currentAction = '';
+
+    function showFormatModal(action) {
+      currentAction = action;
+      document.getElementById('formatModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('formatModal').style.display = 'none';
+    }
+
+    function handleFormatSelection(format) {
+      closeModal();
+
+      const bookId = "thequietones";
+      const bookTitle = "The Quiet Ones!";
+      const price = format === 'hard' ? 25 : 21;
+      const formatName = format === 'hard' ? 'Hard Copy' : 'Soft Copy (PDF)';
+
+      if (currentAction === 'buy') {
+        // Go to payment page with all details
+        window.location.href = `../payment.html?book=${bookId}&title=${encodeURIComponent(bookTitle)}&price=${price}&format=${format}`;
+      } 
+      else {
+        // Add to cart
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push({
+          id: Date.now(),
+          title: bookTitle,
+          format: formatName,
+          price: price,
+          image: "../images/thequietones.jpg"
+        });
+        localStorage.setItem('cart', JSON.stringify(cart));
+         alert(`✅ ${formatName} added to cart!`);
+      }}
+
+         window.onload = updateCartCount;
+     // New Wishlist code
+  let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+  function toggleWishlist() {
+    const bookTitle = "The Quiet Ones";           // ← Change per book
+    const price = 22;                         // Hard copy price (or average)
+    const image = "images/thequietones.jpg";      // Root-relative path
+
+    // Check if already in wishlist
+    const existingIndex = wishlist.findIndex(item => item.title === bookTitle);
+
+    if (existingIndex !== -1) {
+      // Remove from wishlist
+      wishlist.splice(existingIndex, 1);
+      alert(`❌ "${bookTitle}" removed from wishlist`);
+    } else {
+      // Add to wishlist
+      const item = {
+        id: Date.now(),
+        title: bookTitle,
+        price: price,
+        image: image
+      };
+      wishlist.push(item);
+      alert(`❤️ "${bookTitle}" added to wishlist`);
+    }
+
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    
+    // Optional: Change heart color when added
+    const heartBtn = document.querySelector('.heart');
+    if (heartBtn) heartBtn.style.color = (existingIndex === -1) ? '#e63939' : '#ccc';
+  }
+  </script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prex home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <a href="#" class="logo"> PREX </a>
+        <nav class="menu">
+            <ul>
+                 <li>
+                     <a href="mybooks.html">My Books</a>
+                </li>
+                <li>
+                    <a href="wishlist.html">Wishlist</a>
+                </li>
+                <button class="btn">Sign Up</button>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <diiv class="home">
+            <h4> lose yourself</h4>
+            <h1>in our facinating stories</h1>
+            <div class="images">  
+                <img src="images/newgirl.jpg" alt="newgirl">
+                <img src="images/boyslikeus.jpg" alt="boyslikeus">
+                <img src="images/sly.jpg" alt="sly">
+                <img src="images/tagyoureit.jpg" alt="tagyoureit">
+            </div>
+<br><br><br>
+
+<a href="catalogue.html" class="see-more-btn">
+
+   see more</a>
+<br><br><br>
+
+           
+            <section class="about">
+                <div class="about-container">
+                    <h2>About Us</h2><br>
+                    <p>
+                        welcome to our world of stories - a place where imagination meets inspiration.
+                                at our core, we believe that books are more than just pages bound together; they are gateways to new realities, emotions and perspectives.
+                    </p>
+                    <p>
+                        our platform was created for readers who crave adventure, knowledge, romance, mystery, and everything in between.<br>weather you're looking to loose yourself in a fictional universe or discover ideas that challenge your thinking, we are here to connect you with stories that matter.
+                    </p>
+                    <p>
+                        we bring you diverse collection of books from different genres and voices, ensuring that every reader finds something that speaks to them. From writing to storytelling, our goal is to celebrate creativity and make literature for everyone
+                    </p>
+                    <p> this is more than just a bookstore-it's a community built around the love of storytelling.</p>
+                </div>
+            </section>
+       <section class="genre-slider">
+
+    <h2 style="font-size: 40px; color:  #8b5e3c;">Genres</h2><br>
+
+    <div class="carousel">
+
+        <button class="nav left" onclick="prev()">❮</button>
+
+        <div class="cards">
+
+            <a href="romance.html" class="card">
+                <img src="images/romance.jpg">
+                <p>Romance</p>
+            </a>
+
+            <a href="horror.html" class="card">
+                <img src="images/horror.jpg">
+                <p>Horror</p>
+            </a>
+
+            <a href="fantasy.html" class="card active">
+                <img src="images/fantasy.jpg">
+                <p>Fantasy</p>
+            </a>
+
+            <a href="mystery.html" class="card">
+                <img src="images/mystery.jpg">
+                <p>Mystery</p>
+            </a>
+
+            <a href="thriller.html" class="card">
+                <img src="images/thriller.jpg">
+                <p>Thriller</p>
+            </a>
+
+        </div>
+
+        <button class="nav right" onclick="next()">❯</button>
+
+    </div>
+</section>
+        </div>
+    </main>
+
+    <footer class="footer">
+
+    <!-- Social Icons -->
+   <div class="social-icons">
+    <a href="https://facebook.com" target="_blank"><img src="images/facebook.png" width="40px"></a>
+    <a href="https://instagram.com" target="_blank"><img src="images/instagram.jpeg" width="40px"</a></a>
+    <a href="https://twitter.com" target="_blank"><img src="images/twitter.png" width="40px"></a></a>
+    <a href="https://amazon.com" target="_blank"><img src="images/amazon.png" width="40px"></a>
+</div>
+
+
+    <!-- Navigation Links -->
+    <div class="footer-links">
+        <a href="#">Home</a>
+        <a href="#">News</a>
+        <a href="#">About</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Our Team</a>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+        <p>Copyright ©2026. Designed by YOU</p>
+    </div>
+
+</footer>
+  
+   <script>
+let cards = document.querySelectorAll('.card');
+let current = 2;
+
+function update() {
+    cards.forEach(card => {
+        card.className = 'card';
+    });
+
+    cards[current].classList.add('active');
+
+    let left1 = (current - 1 + cards.length) % cards.length;
+    let left2 = (current - 2 + cards.length) % cards.length;
+
+    let right1 = (current + 1) % cards.length;
+    let right2 = (current + 2) % cards.length;
+
+    cards[left1].classList.add('left-1');
+    cards[left2].classList.add('left-2');
+
+    cards[right1].classList.add('right-1');
+    cards[right2].classList.add('right-2');
+}
+
+function next() {
+    current = (current + 1) % cards.length;
+    update();
+}
+
+function prev() {
+    current = (current - 1 + cards.length) % cards.length;
+    update();
+}
+
+update();
+
+  const carousel = document.querySelector('.cards');
+  let isDragging = false;
+  let startX;
+  let scrollLeft;
+
+  carousel.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startX = e.pageX - carousel.offsetLeft;
+    scrollLeft = carousel.scrollLeft;
+  });
+
+  carousel.addEventListener('mouseleave', () => isDragging = false);
+  carousel.addEventListener('mouseup', () => isDragging = false);
+
+  carousel.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - carousel.offsetLeft;
+    const walk = (x - startX) * 2;
+    carousel.scrollLeft = scrollLeft - walk;
+  });
+
+  // Touch support for Android/iOS
+  carousel.addEventListener('touchstart', (e) => {
+    isDragging = true;
+    startX = e.touches[0].pageX - carousel.offsetLeft;
+    scrollLeft = carousel.scrollLeft;
+  });
+
+  carousel.addEventListener('touchend', () => isDragging = false);
+
+  carousel.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    const x = e.touches[0].pageX - carousel.offsetLeft;
+    const walk = (x - startX) * 2;
+    carousel.scrollLeft = scrollLeft - walk;
+  });
+
+
+// Update cart count on all pages
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const countElement = document.getElementById('cart-count');
+  
+  if (countElement) {
+    countElement.textContent = cart.length;
+    
+    // Optional: Hide count if cart is empty
+    if (cart.length === 0) {
+      countElement.style.display = 'none';
+    } else {
+      countElement.style.display = 'flex';
+    }
+  }
+}
+
+// Run when page loads
+window.addEventListener('load', updateCartCount);
+
+// Also update when storage changes (useful for multiple tabs)
+window.addEventListener('storage', updateCartCount);
+</script>
+
+</body>
+</html>

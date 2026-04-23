@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Catalogue</title>
+    <link rel="stylesheet" href="catalogue.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-container">
+    <a href="index.html" class="logo">Prex</a>
+    
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search books...">
+    </div>
+
+    <div class="header-actions">
+      <a href="index.html" class="nav-link">Home</a>
+      
+      <!-- Cart Icon with Count -->
+      <a href="cart.html" class="cart-icon">
+        🛒
+        <span id="cart-count" class="cart-count">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- 🔥 SLIDESHOW -->
+<!--div class="slideshow">
+    <img id="slide" src="images/shopnow.jpg">
+     <img id="slide" src="images/coupon.jpg">
+     <img id="slide" src="images/delivery.jpg">
+</div -->
+
+<!-- 🔥 SECTION -->
+<section class="books-section">
+    <h2>Trending</h2>
+    <div class="book-row">
+        <a href="tagyoureit.html" class="book-card">
+          <img src="images/tagyoureit.jpg">
+          <h3>Tag You're It</h3>
+          <p class="price">$24</p>
+        </a>
+     <a href="boyslikeus.html" class="book-card">
+        <img src="images/boyslikeus.jpg"> 
+        <h3>Boys Like Us</h3>
+        <p class="price">$21</p>
+     </a>
+     <a href="newgirl.html" class="book-card">
+        <img src="images/newgirl.jpg">
+         <h3>New Girl</h3>
+        <p class="price">$28</p>
+     </a>
+     
+      <a href="sly.html" class="book-card">
+        <img src="images/sly.jpg">
+         <h3>Sly</h3>
+        <p class="price">$22</p>
+      </a>
+    </div>
+</section>
+
+<section class="books-section0">
+    <h2>New Arrivals</h2>
+     <div class="book-row">
+     <a href="thequietones.html" class="book-card0">
+        <img src="images/thequietones.jpg">
+         <h3>The Quiet Ones</h3>
+        <p class="price0">$21</p>
+     </a>  
+     <a href="newgirl.html" class="book-card0">
+        <img src="images/newgirl.jpg">
+         <h3>New Girl</h3>
+        <p class="price0">$28</p>
+     </a>
+     <a href="boyslikeus.html" class="book-card0">
+        <img src="images/boyslikeus.jpg"> 
+        <h3>Boys Like Us</h3>
+        <p class="price0">$21</p>
+     </a>
+     <a href="tagyoureit.html" class="book-card0">
+          <img src="images/tagyoureit.jpg">
+          <h3>Tag You're It</h3>
+          <p class="price0">$24</p>
+     </a>
+    </div> 
+</section>
+
+<section class="books-section">
+    <h2>Top Sellers</h2>
+     <div class="book-row">
+     <a href="thequietones.html" class="book-card1">
+        <img src="images/thequietones.jpg">
+         <h3>The Quiet Ones</h3>
+        <p class="price1">$21</p>
+     </a>  
+     <a href="newgirl.html" class="book-card1">
+        <img src="images/newgirl.jpg">
+         <h3>New Girl</h3>
+        <p class="price1">$28</p>
+     </a>
+     <a href="boyslikeus.html" class="book-card1">
+        <img src="images/boyslikeus.jpg"> 
+        <h3>Boys Like Us</h3>
+        <p class="price1">$21</p>
+     </a>
+
+     <a href="tagyoureit.html" class="book-card1">
+          <img src="images/tagyoureit.jpg">
+          <h3>Tag You're It</h3>
+          <p class="price1">$24</p>
+     </a>
+    </div> 
+    <button id="topBtn">↑</button>
+</section>
+
+<!-- 🔝 BACK TO TOP BUTTON -->
+
+
+<script>
+/* 🔥 SLIDESHOW */
+let images = [
+    "images/shopnow.jpg",
+    "images/coupon.jpg",
+    "images/delivery.jpg"
+];
+
+let index = 0;
+let slide = document.getElementById("slide");
+
+setInterval(() => {
+    // fade out
+    slide.style.opacity = 0;
+
+    setTimeout(() => {
+        // change image
+        index = (index + 1) % images.length;
+        slide.src = images[index];
+
+        // fade in
+        slide.style.opacity = 1;
+    }, 400); // half of transition time
+}, 3000);
+
+/* 🔝 SCROLL TO TOP */
+topBtn.onclick = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+};
+
+const searchInput = document.getElementById("searchInput");
+const books = document.querySelectorAll(".book-card",);
+
+searchInput.addEventListener("input", () => {
+    let value = searchInput.value.toLowerCase();
+    let firstMatch = null;
+
+    books.forEach(book => {
+        let title = book.querySelector("h3").textContent.toLowerCase();
+
+        if (value === "") {
+            book.classList.remove("blur", "highlight");
+        } 
+        else if (title.includes(value)) {
+            book.classList.remove("blur");
+            book.classList.add("highlight");
+
+            // store first match
+            if (!firstMatch) {
+                firstMatch = book;
+            }
+        } 
+        else {
+            book.classList.add("blur");
+            book.classList.remove("highlight");
+        }
+    });
+
+      // 🔥 SCROLL TO FIRST MATCH
+    if (firstMatch) {
+        firstMatch.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }
+});
+
+
+// Update cart count on all pages
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const countElement = document.getElementById('cart-count');
+  
+  if (countElement) {
+    countElement.textContent = cart.length;
+    
+    // Optional: Hide count if cart is empty
+    if (cart.length === 0) {
+      countElement.style.display = 'none';
+    } else {
+      countElement.style.display = 'flex';
+    }
+  }
+}
+
+// Run when page loads
+window.addEventListener('load', updateCartCount);
+
+// Also update when storage changes (useful for multiple tabs)
+window.addEventListener('storage', updateCartCount);
+
+</script>
+
+</body>
+</html>
+
+
+
