@@ -224,7 +224,7 @@ books-section1{
 .genrebook-card {
     display: flex;
     text-decoration: none;
-   
+    width: 160px;
     text-align: center;
     background:  #81522e;
     padding: 10px;
