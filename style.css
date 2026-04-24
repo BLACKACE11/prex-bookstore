@@ -65,37 +65,12 @@ a{
      background-color: #81522e;
 }
 
-.hamburger{
-    display: none;
-    font-size: 24px;
-    cusor: pointer;
-}
-
-.mobile-menu{
-    display: none;
-    flex-direction: column;
-}
-
-@media (max-width: 768) {
-    .menu {
-        display: none;
-}
-
-    .hamburger {
-        display: block;
-    }
-
-    .mobile-menu.active{
-        display: flex;
-    }
-        
-
 .home{
     display: flex;
     align-items: center;
     text-align: center;
     flex-direction: column;
-    margin: 18px 0px;
+    margin: 20px 0px;
 }
 
 .home h4{
