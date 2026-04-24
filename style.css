@@ -50,6 +50,11 @@ a{
 
 }
 
+.hamburger {
+    display: none;
+    cusor: pointer:
+    font-size: 24px;
+
 .btn{
     padding: 8px 30px;
     font-size: 16px;
