@@ -184,7 +184,7 @@ books-section1{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 25px;
+    gap: 18px;
     overflow-x: auto;
     grid-template-columns: (auto-fit, minmax(200px, 1fr));
     margin: 0 auto;
