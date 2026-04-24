@@ -224,6 +224,7 @@ books-section1{
 /* card */
 
 .book-card {
+    display: flex;
     text-decoration: none;
     width: 160px;
     text-align: center;
