@@ -223,7 +223,7 @@ books-section1{
 
 /* card */
 
-.book-card {
+/*.book-card {
     display: flex;
     text-decoration: none;
     width: 160px;
@@ -231,6 +231,18 @@ books-section1{
     background:  #81522e;
     padding: 10px;
     border-radius: 10px;
+    transition: 0.3s;
+}*/
+
+.book-card {
+    overflow: hidden;
+    display: block;
+     text-decoration: none;
+    width: 160px;
+    text-align: center;
+    background:  #fef0d3;
+    padding: 10px;
+    border-radius: 12px;
     transition: 0.3s;
 }
 
