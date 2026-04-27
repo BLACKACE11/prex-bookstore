@@ -83,6 +83,7 @@ a{
   font-weight: 800;
   color: #8b5e3c;
   text-decoration: none;
+  align: right;
 }
 
 /* Hamburger Button */
@@ -104,8 +105,8 @@ a{
   width: 100%;
   background: #8b5a2b;
   flex-direction: column;
-  padding: 20px 0;
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    Z-index: 999;
 }
 
 .mobile-menu a {
