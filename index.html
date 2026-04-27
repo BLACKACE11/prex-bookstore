@@ -22,6 +22,16 @@
             </ul>
         </nav>
 
+        <!-- Hamburger Menu Button (Mobile Only) -->
+    <button class="hamburger" id="hamburgerBtn">☰</button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="my-books.html">My Books</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a href="catalogue.html">Catalogue</a>
+    </div>
+
        
     </header>
     <main>
@@ -129,11 +139,23 @@
 
 </footer>
   
-   <script>
-src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js">  </script> 
   <script>   
-    
-      let cards = document.querySelectorAll('.card');
+
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburgerBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('active');
+  });
+
+  // Optional: Close menu when clicking a link
+  document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+    });
+  });
+
+  let cards = document.querySelectorAll('.card');
 let current = 2;
 
 function update() {
