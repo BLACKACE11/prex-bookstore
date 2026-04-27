@@ -66,10 +66,10 @@ a{
 }
 
 .site-header {
-  background: #8b5a2b;
-  color: white;
+  background: #f5e6d3;
+  color: black;
   padding: 15px 20px;
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 1000;
 }
@@ -109,7 +109,7 @@ a{
   font-size: 1.8rem;
   color: white;
   cursor: pointer;
-  padding: 5px;
+  padding: 8px;
 }
 
 /* Mobile Menu */
