@@ -65,6 +65,56 @@ a{
      background-color: #81522e;
 }
 
+/* Hamburger Button - Visible only on mobile */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #8b5a2b;
+  flex-direction: column;
+  padding: 20px 0;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.mobile-menu a {
+  color: white;
+  text-decoration: none;
+  padding: 15px 25px;
+  font-size: 1.1rem;
+}
+
+/* Show hamburger and mobile menu on small screens */
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+  
+  .hamburger {
+    display: block;
+  }
+
+  .mobile-menu {
+    display: none;           /* Hidden by default */
+  }
+
+  .mobile-menu.active {
+    display: flex;
+  }
+}
+
 .home{
     display: flex;
     align-items: center;
