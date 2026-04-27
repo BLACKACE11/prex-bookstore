@@ -61,7 +61,7 @@ a{
 
 .site-header {
   color: white;
-  position: fixed;           /* Stays at top when scrolling */
+    /* Stays at top when scrolling */
   top: 0;
   left: 0;
   width: 100%;
@@ -90,7 +90,7 @@ a{
   background: none;
   border: none;
   font-size: 1.9rem;
-  color: white;
+  color: #8b5e3c;
   cursor: pointer;
   padding: 8px;
 }
