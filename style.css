@@ -67,7 +67,8 @@ a{
   left: 0;
   width: 100%;
   z-index: 1000;
-  padding: 15px 20px;
+  padding: 16px 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 .header-container {
@@ -75,30 +76,44 @@ a{
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between;   /* Logo left, hamburger right */
 }
 
 .logo {
-  font-size: 1.9rem;
+  font-size: 2rem;
   font-weight: 800;
   color: white;
   text-decoration: none;
 }
 
-/* Hamburger - Left side */
+/* Desktop Navigation - Visible on PC */
+.desktop-nav {
+  display: flex;
+  gap: 35px;
+}
+
+.desktop-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+
+/* Hamburger - Visible only on mobile */
 .hamburger {
+  display: none;
   background: none;
   border: none;
   font-size: 2rem;
   color: white;
   cursor: pointer;
-  padding: 5px 10px;
+  padding: 5px;
 }
 
-/* Bottom Slide-up Menu */
+/* Mobile Bottom Menu */
 .mobile-menu {
   position: fixed;
-  bottom: -100%;                    /* Hidden below screen */
+  bottom: -100%;
   left: 0;
   width: 100%;
   background: #8b5a2b;
@@ -111,7 +126,7 @@ a{
 }
 
 .mobile-menu.active {
-  bottom: 0;                        /* Slides up */
+  bottom: 0;
 }
 
 .mobile-menu a {
@@ -123,19 +138,22 @@ a{
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.mobile-menu a:last-child {
-  border-bottom: none;
-}
-
-/* Hide on desktop */
-@media (min-width: 769px) {
-  .hamburger {
+/* Responsive */
+@media (max-width: 768px) {
+  .desktop-nav {
     display: none;
   }
+  .hamburger {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
   .mobile-menu {
     display: none !important;
   }
 }
+
 .home{
     display: flex;
     align-items: center;
