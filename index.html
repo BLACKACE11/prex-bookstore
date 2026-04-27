@@ -129,10 +129,9 @@
         <p>Copyright ©2026. Designed by YOU</p>
     </div>
 
-</footer>
-  
-  <script>   
+</footer>  
 
+ <script>
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const mobileMenu = document.getElementById('mobileMenu');
 
@@ -140,13 +139,13 @@
     mobileMenu.classList.toggle('active');
   });
 
-  // Optional: Close menu when clicking a link
+  // Close menu when clicking any link
   document.querySelectorAll('.mobile-menu a').forEach(link => {
     link.addEventListener('click', () => {
       mobileMenu.classList.remove('active');
     });
   });
-
+      
   let cards = document.querySelectorAll('.card');
 let current = 2;
 
