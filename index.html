@@ -9,21 +9,27 @@
 </head>
 <body>
   
-        <header class="site-header">
+       <header class="site-header">
   <div class="header-container">
-    <!-- Hamburger on the left -->
-    <button class="hamburger" id="hamburgerBtn">☰</button>
-
-    <!-- PREX Logo on the right -->
+    <!-- PREX Logo - Extreme Left -->
     <a href="index.html" class="logo">PREX</a>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
+      <a href="my-books.html">My Books</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a href="catalogue.html">Catalogue</a>
+    </nav>
+
+    <!-- Hamburger - Extreme Right (Mobile Only) -->
+    <button class="hamburger" id="hamburgerBtn">☰</button>
   </div>
 
-  <!-- Bottom Slide-up Menu -->
+  <!-- Mobile Slide-up Menu -->
   <div class="mobile-menu" id="mobileMenu">
     <a href="my-books.html">My Books</a>
     <a href="wishlist.html">Wishlist</a>
     <a href="catalogue.html">Catalogue</a>
-    <a href="signup.html">Sign Up</a>
   </div>
 </header>
     <main>
@@ -135,11 +141,13 @@
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const mobileMenu = document.getElementById('mobileMenu');
 
-  hamburgerBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('active');
-  });
+if (hamburgerBtn && mobileMenu) {
+    hamburgerBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
+  }
 
-  // Close menu when clicking any link
+  // Close menu when clicking a link
   document.querySelectorAll('.mobile-menu a').forEach(link => {
     link.addEventListener('click', () => {
       mobileMenu.classList.remove('active');
