@@ -156,45 +156,46 @@ if (hamburgerBtn && mobileMenu) {
     });
   });
       
-  let cards = document.querySelectorAll('.card');
-  let current = 2;
+let cards = document.querySelectorAll('.card');
+let current = 2;
 
-  function update() {
+function update() {
     cards.forEach(card => {
-      card.className = 'card';
+        card.className = 'card';
     });
 
     cards[current].classList.add('active');
 
     let left1 = (current - 1 + cards.length) % cards.length;
     let left2 = (current - 2 + cards.length) % cards.length;
+
     let right1 = (current + 1) % cards.length;
     let right2 = (current + 2) % cards.length;
 
-    cards[left1].classList.add('left-1');
+    cards[left1].classList.add('left-1');  
     cards[left2].classList.add('left-2');
+
     cards[right1].classList.add('right-1');
     cards[right2].classList.add('right-2');
-  }
+}
 
-  function next() {
+function next() {
     current = (current + 1) % cards.length;
     update();
-  }
+}
 
-  function prev() {
+function prev() {
     current = (current - 1 + cards.length) % cards.length;
     update();
-  }
+}
 
-  // === SWIPE SUPPORT FOR ANDROID / MOBILE ===
-  const carousel = document.querySelector('.cards');   // Make sure this selector matches your HTML
+update();
 
+  const carousel = document.querySelector('.cards');
   let isDragging = false;
   let startX;
   let scrollLeft;
 
-  // Mouse drag (desktop)
   carousel.addEventListener('mousedown', (e) => {
     isDragging = true;
     startX = e.pageX - carousel.offsetLeft;
@@ -208,30 +209,26 @@ if (hamburgerBtn && mobileMenu) {
     if (!isDragging) return;
     e.preventDefault();
     const x = e.pageX - carousel.offsetLeft;
-    const walk = (x - startX) * 2.5;        // Adjust sensitivity
+    const walk = (x - startX) * 2;
     carousel.scrollLeft = scrollLeft - walk;
   });
 
-  // Touch swipe (Android / iOS)
+  // Touch support for Android/iOS
   carousel.addEventListener('touchstart', (e) => {
     isDragging = true;
     startX = e.touches[0].pageX - carousel.offsetLeft;
     scrollLeft = carousel.scrollLeft;
   });
 
-  carousel.addEventListener('touchend', () => {
-    isDragging = false;
-  });
+  carousel.addEventListener('touchend', () => isDragging = false);
 
   carousel.addEventListener('touchmove', (e) => {
     if (!isDragging) return;
     const x = e.touches[0].pageX - carousel.offsetLeft;
-    const walk = (x - startX) * 2.5;
+    const walk = (x - startX) * 2;
     carousel.scrollLeft = scrollLeft - walk;
   });
 
-  // Initialize
-  update();
 
 // Update cart count on all pages
 function updateCartCount() {
