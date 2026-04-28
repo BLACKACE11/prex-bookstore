@@ -1,482 +1,263 @@
-@import url('https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prex home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  
+ <header class="site-header">
+  <div class="header-container">
+    <!-- PREX Logo - Far Left -->
+    <a href="index.html" class="logo">PREX</a>
 
-* {
-    margin: 0;
-    padding: 0;
-     font-family: "Poppins", sans-serif;
-}
+    <!-- Right Side: Navigation + Sign Up -->
+    <div class="header-right">
+      <nav class="desktop-nav">
+        <a href="my-books.html">My Books</a>
+        <a href="wishlist.html">Wishlist</a>
+      </nav>
+      <a href="signup.html" class="signup-btn">Sign Up</a>
+    </div>
 
-html, body{
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    background-color: #fef0d3;
-    overflow-x: hidden;
-   
-}
+    <!-- Hamburger Menu (Mobile Only) -->
+    <button class="hamburger" id="hamburgerBtn">☰</button>
+  </div>
 
-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-}
+  <!-- Mobile Slide-up Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="my-books.html">My Books</a>
+    <a href="wishlist.html">Wishlist</a>
+    <a href="catalogue.html">Catalogue</a>
+    <a href="signup.html">Sign Up</a>
+  </div>
+</header>
+    <main>
+        <diiv class="home">
+            <h4> lose yourself</h4>
+            <h1>in our facinating stories</h1>
+            <div class="images">  
+                <img src="images/newgirl.jpg" alt="newgirl">
+                <img src="images/boyslikeus.jpg" alt="boyslikeus">
+                <img src="images/sly.jpg" alt="sly">
+                <img src="images/tagyoureit.jpg" alt="tagyoureit">
+            </div>
+<br><br><br>
 
-a{
-    text-decoration: none;
-}
+<a href="catalogue.html" class="see-more-btn">
 
-.menu ul{
-    display: flex;
-    gap: 40px;
-    list-style: none;
-    align-items: center;
-}
+   see more</a>
+<br><br><br>
 
-.menu a {
-    color: #333;
-    transition: 0.5s;
+           
+            <section class="about">
+                <div class="about-container">
+                    <h2>About Us</h2><br>
+                    <p>
+                        welcome to our world of stories - a place where imagination meets inspiration.
+                                at our core, we believe that books are more than just pages bound together; they are gateways to new realities, emotions and perspectives.
+                    </p>
+                    <p>
+                        our platform was created for readers who crave adventure, knowledge, romance, mystery, and everything in between.<br>weather you're looking to loose yourself in a fictional universe or discover ideas that challenge your thinking, we are here to connect you with stories that matter.
+                    </p>
+                    <p>
+                        we bring you diverse collection of books from different genres and voices, ensuring that every reader finds something that speaks to them. From writing to storytelling, our goal is to celebrate creativity and make literature for everyone
+                    </p>
+                    <p> this is more than just a bookstore-it's a community built around the love of storytelling.</p>
+                </div>
+            </section>
+       <section class="genre-slider">
 
-}
+    <h2 style="font-size: 40px; color:  #8b5e3c;">Genres</h2><br>
 
-.menu a:hover{
-    color: #81522e;
+    <div class="carousel">
 
-}
+        <button class="nav left" onclick="prev()">❮</button>
 
-.btn{
-    padding: 8px 30px;
-    font-size: 16px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    background-color: #81522e;
-    color: #fff;
-    transition: 0.5s;
-}
+        <div class="cards">
 
-.btn:hover{
-     background-color: #81522e;
-}
-/* Clean Header */
-.site-header {
-  /*background: #f8f1e3;*/
-  color: #2c1810;
-  /*position: fixed;*/
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
- padding: 18px 25px;
-  /* box-shadow: 0 2px 10px rgba(0,0,0,0.08);*/
-}
+            <a href="romance.html" class="card">
+                <img src="images/romance.jpg">
+                <p>Romance</p>
+            </a>
 
-.header-container {
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+            <a href="horror.html" class="card">
+                <img src="images/horror.jpg">
+                <p>Horror</p>
+            </a>
 
-.logo {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: #81522e;
-  text-decoration: none;
-  margin-right: auto;
-}
+            <a href="fantasy.html" class="card active">
+                <img src="images/fantasy.jpg">
+                <p>Fantasy</p>
+            </a>
 
-/* Right side group */
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 45px;
-}
+            <a href="mystery.html" class="card">
+                <img src="images/mystery.jpg">
+                <p>Mystery</p>
+            </a>
 
-.desktop-nav {
-  display: flex;
-  gap: 30px;
-}
+            <a href="thriller.html" class="card">
+                <img src="images/thriller.jpg">
+                <p>Thriller</p>
+            </a>
 
-.desktop-nav a {
-  color: #2c1810;
-  text-decoration: none;
-  font-weight: 500;
-}
+        </div>
 
-.signup-btn {
-  background: #8b5a2b;
-  color: #f5e6d3;
-  padding: 10px 26px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-}
+        <button class="nav right" onclick="next()">❯</button>
 
-/* Hamburger */
-.hamburger {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 2rem;
-  color: #2c1810;
-  cursor: pointer;
-  padding: 20px 40px;
-  margin-left: auto;
+    </div>
+</section>
+        </div>
+    </main>
 
-}
+    <footer class="footer">
 
-/* Mobile Menu */
-.mobile-menu {
-  position: fixed;
-  bottom: -100%;
-  left: 0;
-  width: 100%;
-  background: #8b5a2b;
-  padding: 20px 0;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  box-shadow: 0 -10px 30px rgba(0,0,0,0.3);
-  transition: bottom 0.4s ease;
-  z-index: 1100;
+    <!-- Social Icons -->
+   <div class="social-icons">
+    <a href="https://facebook.com" target="_blank"><img src="images/facebook.png" width="40px"></a>
+    <a href="https://instagram.com" target="_blank"><img src="images/instagram.jpeg" width="40px"</a></a>
+    <a href="https://twitter.com" target="_blank"><img src="images/twitter.png" width="40px"></a></a>
+    <a href="https://amazon.com" target="_blank"><img src="images/amazon.png" width="40px"></a>
+</div>
 
-}
 
-.mobile-menu.active {
-  bottom: 0;
-}
+    <!-- Navigation Links -->
+    <div class="footer-links">
+        <a href="#">Refund</a>
+        <!--a href="#"--><!--/a-->
+        <a href="#">Contact Us</a>
+        <a href="#">Return</a>
+    </div>
 
-.mobile-menu a {
-  display: block;
-  color: white;
-  text-decoration: none;
-  padding: 18px 25px;
-  font-size: 1.15rem;
-}
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+        <p>Copyright ©2026. Designed by YOU</p>
+    </div>
 
-/* Responsive */
-@media (max-width: 768px) {
-  .header-right,
-  .desktop-nav,
-  .signup-btn {
-    display: none;
+</footer>  
+
+ <script>
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+if (hamburgerBtn && mobileMenu) {
+    hamburgerBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
   }
-  .hamburger {
-    display: block;
+
+  // Close menu when clicking a link
+  document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+    });
+  });
+      
+  let cards = document.querySelectorAll('.card');
+  let current = 2;
+
+  function update() {
+    cards.forEach(card => {
+      card.className = 'card';
+    });
+
+    cards[current].classList.add('active');
+
+    let left1 = (current - 1 + cards.length) % cards.length;
+    let left2 = (current - 2 + cards.length) % cards.length;
+    let right1 = (current + 1) % cards.length;
+    let right2 = (current + 2) % cards.length;
+
+    cards[left1].classList.add('left-1');
+    cards[left2].classList.add('left-2');
+    cards[right1].classList.add('right-1');
+    cards[right2].classList.add('right-2');
   }
-}
 
-@media (min-width: 769px) {
-  .mobile-menu {
-    display: none !important;
+  function next() {
+    current = (current + 1) % cards.length;
+    update();
   }
-}
 
-.home{
-    display: flex;
-    align-items: center;
-    text-align: center;
-    flex-direction: column;
-    margin: 20px 0px;
-}
+  function prev() {
+    current = (current - 1 + cards.length) % cards.length;
+    update();
+  }
 
-.home h4{
-    font-family: "Monsieur La Doulaise", sans-serif;
-    font-size: 78px;
-    color: #81522e;
-}
+  // === SWIPE SUPPORT FOR ANDROID / MOBILE ===
+  const carousel = document.querySelector('.cards');   // Make sure this selector matches your HTML
 
-.home h1{
-    font-size: 69px;
-    color: #81522e;
-    line-height: 72px;
-}
+  let isDragging = false;
+  let startX;
+  let scrollLeft;
 
-.images{
-    margin-top: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-}
+  // Mouse drag (desktop)
+  carousel.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startX = e.pageX - carousel.offsetLeft;
+    scrollLeft = carousel.scrollLeft;
+  });
 
+  carousel.addEventListener('mouseleave', () => isDragging = false);
+  carousel.addEventListener('mouseup', () => isDragging = false);
 
-.images img{
-   width: 20%;
-   height: 350px;
-   object-fit: cover;
-   border-radius: 20px;
-   transition: 0.5s; 
-   
-}
+  carousel.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - carousel.offsetLeft;
+    const walk = (x - startX) * 2.5;        // Adjust sensitivity
+    carousel.scrollLeft = scrollLeft - walk;
+  });
 
-.images img:hover{
-    width: 30%;
-   cursor: pointer;
-   filter: contrast(1.1);
-}
+  // Touch swipe (Android / iOS)
+  carousel.addEventListener('touchstart', (e) => {
+    isDragging = true;
+    startX = e.touches[0].pageX - carousel.offsetLeft;
+    scrollLeft = carousel.scrollLeft;
+  });
 
+  carousel.addEventListener('touchend', () => {
+    isDragging = false;
+  });
 
-.see-more-btn {
-    display: inline-block;
-    padding: 12px 25px;
-    background: #8b5e3c;
-    color: white;
-    text-decoration: none;
-    border-radius: 25px;
-    transition: all 0.3s ease;
-}
+  carousel.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    const x = e.touches[0].pageX - carousel.offsetLeft;
+    const walk = (x - startX) * 2.5;
+    carousel.scrollLeft = scrollLeft - walk;
+  });
 
-/* 🔥 Hover */
-.see-more-btn:hover {
-    background: #a97458;
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-}
+  // Initialize
+  update();
 
-
-.about{
-    width: 100%;
-    padding: 30px 0px;
-    background-color: #81522e;
-    text-align: center;
-   
-}
-
-.about-contaier{
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 20px;
-    text-align: center;
-}
-
-.about h2{
-    font-size: 36px;
-    text-align: center;
-    margin-bottom: 5px;
-    color: #fef0d3;
-}
-
-.about p {
-    font-size: 16px;
-    line-height: 1.8;
-    color: #fef0d3;
-    margin-bottom: 15px;
-}
-
-.body {
-    margin: 0;
-    overflow-x: hidden;
-}
-
-.genre-slider {
-    width: 100%;
-    background: white;
-    padding: 70px 0;
-    text-align: center;
+// Update cart count on all pages
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const countElement = document.getElementById('cart-count');
+  
+  if (countElement) {
+    countElement.textContent = cart.length;
     
-}
-
-.carousel {
-    position: relative;
-    width: 100%;
-    max-width: 600px;
-    margin: auto;
-}
-
-.cards {
-    position: relative;
-    height: 320px;
-}
-
-/* Base */
-.card {
-    position: absolute;
-    width: 220px;
-    height: 400px;
-    left: 50%;
-    top: 0;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.5s ease;
-}
-
-/* CENTER */
-.card.active {
-    transform: translateX(-50%) scale(1);
-    z-index: 5;
-}
-
-/* LEFT SIDE */
-.card.left-1 {
-    transform: translateX(-140%) scale(0.85);
-    opacity: 0.7;
-    z-index: 4;
-}
-
-.card.left-2 {
-    transform: translateX(-230%) scale(0.7);
-    opacity: 0.4;
-    z-index: 3;
-}
-
-/* RIGHT SIDE */
-.card.right-1 {
-    transform: translateX(40%) scale(0.85);
-    opacity: 0.7;
-    z-index: 4;
-}
-
-.card.right-2 {
-    transform: translateX(130%) scale(0.7);
-    opacity: 0.4;
-    filter: blur(2px);
-    z-index: 3;
-}
-
-/* Image */
-.card img {
-    width: 100%;
-    height: 80%;
-    object-fit: cover;
-}
-
-/* Text */
-.card p {
-    margin: 0;
-    padding: 10px;
-    background: #8b5e3c;
-    color: white;
-    font-weight: bold;
-}
-
-/* Arrows */
-.nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #8b5e3c;
-    color: white;
-    border: none;
-    width: 45;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 10;
-    justify-content: center;
-    align-items: center;
-}
-
-.left {
-    left: 10px;
-}
-
-.right {
-    right: 10px;
-}
-
-@media (max-width: 768px){
-    .nav {
-        display: none;
+    // Optional: Hide count if cart is empty
+    if (cart.length === 0) {
+      countElement.style.display = 'none';
+    } else {
+      countElement.style.display = 'flex';
     }
+  }
 }
 
-slider:hover .card{
-    transform: rotate(calc(var(--i)*10deg)) translate(calc(var(--i*60px)));
-}
+// Run when page loads
+window.addEventListener('load', updateCartCount);
 
-.card span{
-    display: block;
-    padding: 15px;
-    font-weight: bold;
-    text-align: center;
-    background: #81522e;
-}
+// Also update when storage changes (useful for multiple tabs)
+window.addEventListener('storage', updateCartCount);
 
-.footer {
-    background:#fef0d3; /* beige */
-    text-align: center;
-    padding-top: 40px;
-}
+</script>
+     <script src="script.js"></script>
 
-/* Social icons */
-.social-icons {
-    margin-bottom: 20px;
-}
-
-.social-icons a {
-    display: inline-block;
-    margin: 0 10px;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    background: #333;
-    color: white;
-    border-radius: 50%;
-    font-size: 18px;
-    transition: 0.3s;
-    padding: 8px;
-}
-
-.social-icons img{
-    width: 108%;
-    height: 108%;
-    border-radius: 900%;
-    object-fit: cover;
-}
-
-.social-icons a:hover {
-    background: #8b5e3c; /* your theme brown */
-}
-
-/* Links */
-.footer-links {
-    margin-bottom: 20px;
-}
-
-.footer-links a {
-    margin: 0 15px;
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-    transition: 0.3s;
-}
-
-.footer-links a:hover {
-    color: #8b5e3c;
-    transform: translateY(-5px);
-    box-shadow: 0 0 15px #8b5e3c;
-}
-
-/* Bottom bar */
-.footer-bottom {
-    background: #8b5e3c; /* slightly darker beige */
-    padding: 15px 0;
-    font-size: 14px;
-}
-.social-icons a {
-    display: inline-block;
-    margin: 0 10px;
-    width: 45px;
-    height: 45px;
-    line-height: 45px;
-    background: #e0d2be;
-    color:#f5e6d3;
-    border-radius: 50%;
-    font-size: 18px;
-    transition: all 0.3s ease;
-}
-
-
-
-/* 🔥 GLOW EFFECT */
-.social-icons a:hover {
-    background: #8b5e3c;
-    transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 0 10px #8b5e3c,
-                0 0 20px #8b5e3c,
-                0 0 40px #8b5e3c;
-}
-
-
+</body>
+</html>
