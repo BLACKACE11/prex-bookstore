@@ -123,7 +123,7 @@ a{
   font-size: 2rem;
   color: #2c1810;
   cursor: pointer;
-  padding: 5px 10px;
+  padding: 20px 40px;
   margin-left: auto;
 
 }
@@ -189,7 +189,7 @@ a{
 }
 
 .home h1{
-    font-size: 72px;
+    font-size: 69px;
     color: #81522e;
     line-height: 72px;
 }
