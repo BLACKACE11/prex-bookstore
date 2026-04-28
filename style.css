@@ -12,7 +12,6 @@ html, body{
     height: 100vh;
     background-color: #fef0d3;
     overflow-x: hidden;
-    padding-top: 90px;
    
 }
 
@@ -468,6 +467,18 @@ slider:hover .card{
     box-shadow: 0 0 10px #8b5e3c,
                 0 0 20px #8b5e3c,
                 0 0 40px #8b5e3c;
+}
+
+    /* Fix for fixed header overlapping content */
+body {
+  padding-top: 80px;     /* This pushes content down below the fixed header */
+}
+
+/* Optional: Make it responsive */
+@media (max-width: 768px) {
+  body {
+    padding-top: 70px;
+  }
 }
 
 
