@@ -470,16 +470,7 @@ slider:hover .card{
 }
 
     /* Fix for fixed header overlapping content */
-body {
-  padding-top: 80px;     /* This pushes content down below the fixed header */
-}
 
-/* Optional: Make it responsive */
-@media (max-width: 768px) {
-  body {
-    padding-top: 70px;
-  }
-}
 
 
 
