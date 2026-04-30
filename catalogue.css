@@ -181,10 +181,10 @@ books-section1{
 
 /* horizontal scroll */
 .book-row {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;/*15px*/
+    display: flex !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 15px !important;/*15px*/
    overflow-x: auto;
     grid-template-columns: (auto-fit, minmax(200px, 1fr));
     margin: 0 auto;
@@ -353,19 +353,6 @@ books-section1{
 }
 /* #81522e
    #fef0d3;*/
-
-
-
-
-/* ==================== CATALOGUE PAGE - MOBILE FIX (2 per row) ==================== */
-
-.book-row {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 16px !important;
-  justify-content: center !important;
-  padding: 15px;
-}
 
 
 /* Desktop version - 4 cards per row */
