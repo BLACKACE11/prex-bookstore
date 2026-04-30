@@ -371,7 +371,7 @@ html{
 }
 
 /* Very small phones */
-@media (max-width: 480px) {
+@media (max-width: 200px) {
   .books-section .book-card {
     max-width: 165px !important;
   }
