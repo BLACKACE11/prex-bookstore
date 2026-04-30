@@ -275,20 +275,22 @@ a{
     width: 100%;
     background: white;
     padding: 70px 0;
-    text-align: center;
-    
 }
 
 .carousel {
     position: relative;
     width: 100%;
     max-width: 600px;
-    margin: auto;
+    margin: 0 auto;
 }
 
 .cards {
     position: relative;
     height: 320px;
+}
+
+.cards::-webkit-scrollbar{
+    display: none;
 }
 
 /* Base */
@@ -301,6 +303,8 @@ a{
     border-radius: 12px;
     overflow: hidden;
     transition: all 0.5s ease;
+
+    flex-shrink:0 ;
 }
 
 /* CENTER */
@@ -377,9 +381,13 @@ a{
 }
 
 @media (max-width: 768px){
-    .nav {
-        display: none;
-    }
+  .nav {
+        /*  display: none;
+    }*/
+    width: 30px;
+    height: 40px;
+    font-size: 1rem;
+}
 }
 
 slider:hover .card{
