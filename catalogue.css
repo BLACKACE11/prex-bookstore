@@ -160,9 +160,22 @@ html{
     background:   #81522e; ;
 }
 
-books-section1{
+.books-section1{
     padding: 40px 20px;
-    background:   white; ;
+    background:   white; 
+}
+
+/* horizontal scroll */
+.book-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    overflow-x: auto;
+    grid-template-columns: (auto-fit, minmax(200px, 1fr));
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 30px 20px;
 }
 .books-section h2 {
     margin-bottom: 20px;
@@ -179,18 +192,7 @@ books-section1{
     color: #81522e;
 }
 
-/* horizontal scroll */
-.book-row {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 25px;
-    overflow-x: auto;
-    grid-template-columns: (auto-fit, minmax(200px, 1fr));
-    margin: 0 auto;
-    max-width: 1200px;
-    padding: 30px 20px;
-}
+
 
 .book-row img {
     width: 150px;
@@ -329,6 +331,65 @@ books-section1{
 }
 /* #81522e
    #fef0d3;*/
+
+
+   /* ==================== GENRE PAGES - 2 BOOKS PER ROW ON MOBILE ==================== */
+
+.books-section .book-row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 16px !important;
+  justify-content: center !important;
+  padding: 20px 15px;
+}
+
+.books-section .book-card {
+  flex: 1 1 calc(50% - 8px) !important;
+  max-width: 172px !important;
+  background: #81522e;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  text-align: center;
+}
+
+.books-section .book-card img {
+  width: 100% !important;
+  height: 235px !important;
+  object-fit: cover !important;
+}
+
+.books-section .book-card h3 {
+  font-size: 0.98rem;
+  margin: 10px 8px 6px;
+}
+
+.books-section .book-card .price {
+  color: #e9c7a8;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+/* Very small phones */
+@media (max-width: 480px) {
+  .books-section .book-card {
+    max-width: 165px !important;
+  }
+  .books-section .book-card img {
+    height: 220px !important;
+  }
+}
+
+/* Desktop - 4 per row */
+@media (min-width: 769px) {
+  .books-section .book-card {
+    flex: 1 1 calc(25% - 16px) !important;
+    max-width: 220px !important;
+  }
+  .books-section .book-card img {
+    height: 280px !important;
+  }
+}
 
 
 
