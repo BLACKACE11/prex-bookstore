@@ -358,6 +358,7 @@ a{
 
 /* Arrows */
 .nav {
+    display: block !important;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -381,12 +382,17 @@ a{
 }
 
 @media (max-width: 768px){
-  .nav {
+  .nav.left {left: 20px;}
+    .nav.right {right: 20px;}}
+      .carousel{
+          position: relative;
+          overflow: visible;
+      }
         /*  display: none;
-    }*/
+    }
     width: 30px;
     height: 40px;
-    font-size: 1rem;
+    font-size: 1rem;*/
 }
 }
 
