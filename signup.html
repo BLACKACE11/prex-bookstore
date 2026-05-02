@@ -13,14 +13,14 @@
   
 <button id="createBtn">Create Account</button>
 
- <script>
+<script>
   // Supabase Setup
-  const supabaseUrl = 'https://ppinkzelfepvrlwqhevm.supabase.co';
-  const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI'; // Your full key
+  const supabaseUrl = 'https://ppinkzelfpvrwqhevm.supabase.co';
+  const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'; // ← Your full anon key
 
-  const supabase = Supabase.createClient(supabaseUrl, supabaseAnonKey);
+  const supabase = supabase.createClient(supabaseUrl, supabaseAnonKey);   // ← Note: lowercase 'supabase'
 
-  document.getElementById('createBtn').addEventListener('click', async () => {
+  async function signUp() {
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value.trim();
 
@@ -29,7 +29,10 @@
       return;
     }
 
-    alert("Attempting signup...");
+    if (password.length < 6) {
+      alert("Password must be at least 6 characters");
+      return;
+    }
 
     try {
       const { data, error } = await supabase.auth.signUp({
@@ -38,14 +41,14 @@
       });
 
       if (error) {
-        alert("Error: " + error.message);
+        alert("Sign up failed: " + error.message);
       } else {
-        alert("Success! Check your email for confirmation.");
+        alert("Sign up successful! Please check your email to confirm your account.");
       }
     } catch (err) {
-      alert("Failed: " + err.message);
+      alert("Error: " + err.message);
     }
-  });
+  }
 </script>
  
 </body>
