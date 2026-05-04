@@ -2,54 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sign Up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Prex</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f8f1e3; margin: 0; padding: 20px; }
+    .box { max-width: 380px; margin: 40px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+    input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; }
+    button { width: 100%; padding: 14px; background: #8b5a2b; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; }
+  </style>
 </head>
 <body>
 
-  <h2>Sign Up</h2>
-  <input type="email" id="email" placeholder="Email" value="test@example.com"><br><br>
-  <input type="password" id="password" placeholder="Password" value="123456"><br><br>
-  
-<button id="createBtn">Create Account</button>
+  <div class="box">
+    <h2>Sign Up</h2>
+    <input type="email" id="email" placeholder="Email address">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="signUp()">Create Account</button>
+  </div>
 
-<script>
-  // Supabase Setup
-  const supabaseUrl = 'https://ppinkzelfpvrwqhevm.supabase.co';
-  const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'; // ← Your full anon key
+  <script>
+    const supabaseUrl = 'https://ppinkzelfpvrwqhevm.supabase.co';
+    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'; // ← FULL ANON KEY HERE
 
-  const supabase = supabase.createClient(supabaseUrl, supabaseAnonKey);   // ← Note: lowercase 'supabase'
+    const supabase = supabase.createClient(supabaseUrl, supabaseAnonKey);
 
-  async function signUp() {
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value.trim();
+    async function signUp() {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
 
-    if (!email || !password) {
-      alert("Please enter email and password");
-      return;
-    }
-
-    if (password.length < 6) {
-      alert("Password must be at least 6 characters");
-      return;
-    }
-
-    try {
-      const { data, error } = await supabase.auth.signUp({
-        email: email,
-        password: password
-      });
-
-      if (error) {
-        alert("Sign up failed: " + error.message);
-      } else {
-        alert("Sign up successful! Please check your email to confirm your account.");
+      if (!email || !password) {
+        alert("Please enter email and password");
+        return;
       }
-    } catch (err) {
-      alert("Error: " + err.message);
+
+      alert("Attempting to sign up...");
+
+      try {
+        const { data, error } = await supabase.auth.signUp({
+          email: email,
+          password: password
+        });
+
+        if (error) {
+          alert("Sign up failed: " + error.message);
+        } else {
+          alert("Sign up successful! Check your email.");
+        }
+      } catch (err) {
+        alert("Error: " + err.message);
+      }
     }
-  }
-</script>
- 
+  </script>
 </body>
 </html>
