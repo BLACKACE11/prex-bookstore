@@ -2,41 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up - Prex</title>
+  <title>Sign Up Test</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <style>
-    body { font-family: Arial, sans-serif; background: #f8f1e3; margin: 0; padding: 20px; }
-    .box { max-width: 380px; margin: 40px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-    input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; }
-    button { width: 100%; padding: 14px; background: #8b5a2b; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; }
-  </style>
 </head>
 <body>
 
-  <div class="box">
-    <h2>Sign Up</h2>
-    <input type="email" id="email" placeholder="Email address">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="signUp()">Create Account</button>
-  </div>
+  <h2>Sign Up Test</h2>
+  
+  <input type="email" id="email" placeholder="Email" value="test@example.com"><br><br>
+  <input type="password" id="password" placeholder="Password" value="123456"><br><br>
+  
+  <button onclick="signUp()">Create Account</button>
 
   <script>
+    alert("Page loaded - JavaScript is running");
+
     const supabaseUrl = 'https://ppinkzelfepvrlwqhevm.supabase.co';
-    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI'; // ← FULL ANON KEY HERE
+    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI'; // Paste full key
 
     const supabase = supabase.createClient(supabaseUrl, supabaseAnonKey);
 
     async function signUp() {
-      const email = document.getElementById('email').value.trim();
-      const password = document.getElementById('password').value.trim();
+      alert("Button clicked!");
 
-      if (!email || !password) {
-        alert("Please enter email and password");
-        return;
-      }
-
-      alert("Attempting to sign up...");
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
 
       try {
         const { data, error } = await supabase.auth.signUp({
@@ -44,13 +34,10 @@
           password: password
         });
 
-        if (error) {
-          alert("Sign up failed: " + error.message);
-        } else {
-          alert("Sign up successful! Check your email.");
-        }
-      } catch (err) {
-        alert("Error: " + err.message);
+        if (error) alert("Error: " + error.message);
+        else alert("Success! Check email.");
+      } catch (e) {
+        alert("Failed: " + e.message);
       }
     }
   </script>
