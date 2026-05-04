@@ -5,53 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - Prex</title>
   
-  <!-- Supabase JS -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  
-  <!-- Supabase Auth UI -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/auth-ui@2"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@supabase/auth-ui@2/dist/index.css">
   
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f8f1e3;
-      margin: 0;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-    .auth-container {
-      max-width: 400px;
-      width: 100%;
-    }
+    body { font-family: Arial, sans-serif; background: #f8f1e3; margin: 0; padding: 20px; }
+    .container { max-width: 400px; margin: 40px auto; }
   </style>
 </head>
 <body>
 
-  <div class="auth-container">
-    <h2 style="text-align:center; color:#2c1810;">Sign Up to Prex</h2>
+  <div class="container">
+    <h2 style="text-align:center;">Sign Up to Prex</h2>
     <div id="auth-ui"></div>
   </div>
 
   <script>
-    // === YOUR SUPABASE CONFIG ===
-    const supabaseUrl = 'https://ppinkzelfepvrlwqhevm.supabase.co';
-    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI'; // ← Paste your FULL anon key here
+    // Wait for Supabase to load
+    window.addEventListener('load', () => {
+      const supabaseUrl = 'https://ppinkzelfepvrlwqhevm.supabase.co';
+      const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI'; // ← FULL ANON KEY HERE
 
-    const supabase = Supabase.createClient(supabaseUrl, supabaseAnonKey);
+      const supabase = Supabase.createClient(supabaseUrl, supabaseAnonKey);
 
-    // Render beautiful Auth UI
-    SupabaseAuthUI.createAuthUI(supabase, {
-      container: '#auth-ui',
-      providers: [],                    // Add Google etc later if you want
-      theme: 'light',
-      signUpRedirectTo: window.location.origin + '/index.html',
-      signInRedirectTo: window.location.origin + '/index.html'
+      // Render Auth UI
+      SupabaseAuthUI.createAuthUI(supabase, {
+        container: '#auth-ui',
+        providers: [],
+        theme: 'light',
+        signUpRedirectTo: window.location.origin + '/index.html',
+        signInRedirectTo: window.location.origin + '/index.html'
+      });
     });
   </script>
-
 </body>
 </html>
