@@ -4,14 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - Prex</title>
-  
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/auth-ui@2"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@supabase/auth-ui@2/dist/index.css">
-  
   <style>
     body { font-family: Arial, sans-serif; background: #f8f1e3; margin: 0; padding: 20px; }
-    .container { max-width: 400px; margin: 40px auto; }
+    .container { max-width: 400px; margin: 40px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
   </style>
 </head>
 <body>
@@ -22,22 +20,22 @@
   </div>
 
   <script>
-    // Wait for Supabase to load
-    window.addEventListener('load', () => {
+    // Wait a bit for scripts to load
+    setTimeout(() => {
       const supabaseUrl = 'https://ppinkzelfepvrlwqhevm.supabase.co';
-      const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI'; // ← FULL ANON KEY HERE
+      const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI
+
+        '; // ← FULL ANON KEY HERE
 
       const supabase = Supabase.createClient(supabaseUrl, supabaseAnonKey);
 
-      // Render Auth UI
       SupabaseAuthUI.createAuthUI(supabase, {
         container: '#auth-ui',
         providers: [],
         theme: 'light',
-        signUpRedirectTo: window.location.origin + '/index.html',
-        signInRedirectTo: window.location.origin + '/index.html'
+        signUpRedirectTo: window.location.origin + '/index.html'
       });
-    });
+    }, 800); // 800ms delay
   </script>
 </body>
 </html>
