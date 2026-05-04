@@ -2,44 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sign Up Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Prex</title>
+  
+  <!-- Supabase JS -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <!-- Supabase Auth UI -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/auth-ui@2"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@supabase/auth-ui@2/dist/index.css">
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f1e3;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .auth-container {
+      max-width: 400px;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
 
-  <h2>Sign Up Test</h2>
-  
-  <input type="email" id="email" placeholder="Email" value="test@example.com"><br><br>
-  <input type="password" id="password" placeholder="Password" value="123456"><br><br>
-  
-  <button onclick="signUp()">Create Account</button>
+  <div class="auth-container">
+    <h2 style="text-align:center; color:#2c1810;">Sign Up to Prex</h2>
+    <div id="auth-ui"></div>
+  </div>
 
   <script>
-    alert("Page loaded - JavaScript is running");
-
+    // === YOUR SUPABASE CONFIG ===
     const supabaseUrl = 'https://ppinkzelfepvrlwqhevm.supabase.co';
-    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI'; // Paste full key
+    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI'; // ← Paste your FULL anon key here
 
-    const supabase = supabase.createClient(supabaseUrl, supabaseAnonKey);
+    const supabase = Supabase.createClient(supabaseUrl, supabaseAnonKey);
 
-    async function signUp() {
-      alert("Button clicked!");
-
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-
-      try {
-        const { data, error } = await supabase.auth.signUp({
-          email: email,
-          password: password
-        });
-
-        if (error) alert("Error: " + error.message);
-        else alert("Success! Check email.");
-      } catch (e) {
-        alert("Failed: " + e.message);
-      }
-    }
+    // Render beautiful Auth UI
+    SupabaseAuthUI.createAuthUI(supabase, {
+      container: '#auth-ui',
+      providers: [],                    // Add Google etc later if you want
+      theme: 'light',
+      signUpRedirectTo: window.location.origin + '/index.html',
+      signInRedirectTo: window.location.origin + '/index.html'
+    });
   </script>
+
 </body>
 </html>
