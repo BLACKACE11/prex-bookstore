@@ -2,25 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - Prex</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
-  <h2>Sign Up</h2>
-  <input type="email" id="email" placeholder="Email">
-  <input type="password" id="password" placeholder="Password">
-  <button onclick="signUp()">Create Account</button>
+  <h2>Sign Up to Prex</h2>
+  
+  <input type="email" id="email" placeholder="Email address" style="width:100%; padding:12px; margin:10px 0;">
+  <input type="password" id="password" placeholder="Password (min 6 characters)" style="width:100%; padding:12px; margin:10px 0;">
+  
+  <button onclick="signUp()" style="width:100%; padding:14px; background:#8b5a2b; color:white; border:none; border-radius:8px;">Create Account</button>
 
   <script>
     const supabaseUrl = 'https://ppinkzelfepvrlwqhevm.supabase.co
 
       ';
-    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI'; // your full key
+    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI'; // ← Paste your FULL anon key here
 
     const supabase = Supabase.createClient(supabaseUrl, supabaseAnonKey);
 
     async function signUp() {
+      alert("Button clicked! Starting signup...");
+
       const email = document.getElementById('email').value.trim();
       const password = document.getElementById('password').value.trim();
 
@@ -29,7 +34,10 @@
         return;
       }
 
-      alert("Attempting signup..."); // This should always show
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters");
+        return;
+      }
 
       try {
         const { data, error } = await supabase.auth.signUp({
@@ -37,10 +45,14 @@
           password: password
         });
 
-        if (error) alert("Error: " + error.message);
-        else alert("Success! Check your email.");
-      } catch (e) {
-        alert("Failed: " + e.message);
+        if (error) {
+          alert("Sign up failed: " + error.message);
+        } else {
+          alert("Sign up successful! Please check your email to confirm your account.");
+          window.location.href = "index.html";
+        }
+      } catch (err) {
+        alert("An error occurred. Please try again.");
       }
     }
   </script>
