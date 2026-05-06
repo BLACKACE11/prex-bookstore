@@ -10,16 +10,14 @@
 
   <h2>Sign Up to Prex</h2>
   
-  <input type="email" id="email" placeholder="Email address" style="width:100%; padding:12px; margin:10px 0;">
-  <input type="password" id="password" placeholder="Password (min 6 characters)" style="width:100%; padding:12px; margin:10px 0;">
+  <input type="email" id="email" placeholder="Email address" style="width:90%; padding:12px; margin:10px;">
+  <input type="password" id="password" placeholder="Password" style="width:90%; padding:12px; margin:10px;">
   
-  <button onclick="signUp()" style="width:100%; padding:14px; background:#8b5a2b; color:white; border:none; border-radius:8px;">Create Account</button>
+  <button onclick="signUp()" style="width:90%; padding:14px; background:#8b5a2b; color:white; border:none; margin:10px;">Create Account</button>
 
   <script>
-    const supabaseUrl = 'https://ppinkzelfepvrlwqhevm.supabase.co
-
-      ';
-    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI'; // ← Paste your FULL anon key here
+    const supabaseUrl = 'https://ppinkzelfpvrwqhevm.supabase.co';
+    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'; // ← YOUR FULL ANON KEY HERE
 
     const supabase = Supabase.createClient(supabaseUrl, supabaseAnonKey);
 
@@ -34,11 +32,6 @@
         return;
       }
 
-      if (password.length < 6) {
-        alert("Password must be at least 6 characters");
-        return;
-      }
-
       try {
         const { data, error } = await supabase.auth.signUp({
           email: email,
@@ -48,8 +41,7 @@
         if (error) {
           alert("Sign up failed: " + error.message);
         } else {
-          alert("Sign up successful! Please check your email to confirm your account.");
-          window.location.href = "index.html";
+          alert("Sign up successful! Please check your email.");
         }
       } catch (err) {
         alert("An error occurred. Please try again.");
