@@ -4,64 +4,62 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - Prex</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f8f1e3; margin: 0; padding: 20px; }
+    .box { max-width: 380px; margin: 40px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+    input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 8px; }
+    button { width: 100%; padding: 14px; background: #8b5a2b; color: white; border: none; border-radius: 8px; font-size: 16px; }
+  </style>
 </head>
 <body>
 
-  <h2>Sign Up to Prex</h2>
-  
-  <input type="email" id="email" placeholder="Email" style="padding:12px; margin:10px; width:80%;">
-  <input type="password" id="password" placeholder="Password" style="padding:12px; margin:10px; width:80%;">
-  
-  <button onclick="signUp()" style="padding:14px; background:#8b5a2b; color:white; border:none; margin:10px;">Create Account</button>
-
-  'https://ppinkzelfepvrlwqhevm.supabase.co';
-  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI
+  <div class="box">
+    <h2>Sign Up to Prex</h2>
+    <input type="email" id="email" placeholder="Email address">
+    <input type="password" id="password" placeholder="Password (min 6 chars)">
+    <button onclick="signUp()">Create Account</button>
+  </div>
 
   <script>
-  // Wait for the Supabase script to fully load
-  window.addEventListener('load', function() {
-    const supabaseUrl = 'https://ppinkzelfepvrlwqhevm.supabase.co';
-    const supabaseAnonKey = ' eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI'; // ← Paste your FULL anon key here
+    // Longer delay to ensure Supabase library loads
+    setTimeout(() => {
+      const supabaseUrl = 'https://ppinkzelfepvrlwqhevm.supabase.co';
+      const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI'; // ← YOUR FULL ANON KEY
 
-    try {
-      const supabase = Supabase.createClient(supabaseUrl, supabaseAnonKey);
+      try {
+        const supabase = Supabase.createClient(supabaseUrl, supabaseAnonKey);
 
-      window.signUp = async function() {
-        const email = document.getElementById('email').value.trim();
-        const password = document.getElementById('password').value.trim();
+        window.signUp = async function() {
+          const email = document.getElementById('email').value.trim();
+          const password = document.getElementById('password').value.trim();
 
-        if (!email || !password) {
-          alert("Please enter email and password");
-          return;
-        }
-
-        if (password.length < 6) {
-          alert("Password must be at least 6 characters");
-          return;
-        }
-
-        try {
-          const { data, error } = await supabase.auth.signUp({
-            email: email,
-            password: password
-          });
-
-          if (error) {
-            alert("Sign up failed: " + error.message);
-          } else {
-            alert("Sign up successful! Please check your email to confirm your account.");
-            window.location.href = "index.html";
+          if (!email || !password) {
+            alert("Please enter email and password");
+            return;
           }
-        } catch (err) {
-          alert("Error: " + err.message);
-        }
-      };
-    } catch (e) {
-      alert("Supabase failed to load. Check your internet or anon key.");
-    }
-  });
-</script>
 
+          if (password.length < 6) {
+            alert("Password must be at least 6 characters");
+            return;
+          }
 
+          try {
+            const { data, error } = await supabase.auth.signUp({
+              email: email,
+              password: password
+            });
+
+            if (error) alert("Error: " + error.message);
+            else alert("Success! Check your email to confirm.");
+          } catch (e) {
+            alert("Failed: " + e.message);
+          }
+        };
+      } catch (e) {
+        alert("Supabase failed to initialize. Check anon key.");
+      }
+    }, 1500);
+  </script>
 </body>
 </html>
