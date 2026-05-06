@@ -14,12 +14,18 @@
   
   <button onclick="signUp()" style="padding:14px; background:#8b5a2b; color:white; border:none; margin:10px;">Create Account</button>
 
+  'https://ppinkzelfepvrlwqhevm.supabase.co';
+  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI
+
 <script>
+  // 1. Initialize Supabase FIRST
   const supabaseUrl = 'https://ppinkzelfepvrlwqhevm.supabase.co';
-  const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI'; // ← Make sure this is your FULL key
+  const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI
+'; // ← Paste your FULL anon key here
 
   const supabase = Supabase.createClient(supabaseUrl, supabaseAnonKey);
 
+  // 2. Define the function AFTER initialization
   async function signUp() {
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value.trim();
@@ -41,17 +47,16 @@
       });
 
       if (error) {
-        alert("Supabase Error: " + error.message);
-        console.error(error);
+        alert("Sign up failed: " + error.message);
       } else {
         alert("Sign up successful! Please check your email to confirm your account.");
         window.location.href = "index.html";
       }
     } catch (err) {
-      alert("JavaScript Error: " + err.message);
-      console.error(err);
+      alert("An error occurred. Please try again.");
     }
   }
+</script>
 </script>
 </body>
 </html>
