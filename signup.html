@@ -17,8 +17,8 @@
   'https://ppinkzelfepvrlwqhevm.supabase.co';
   eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI
 
-<script>
-  const supabaseUrl =  'https://ppinkzelfepvrlwqhevm.supabase.co';
+  <script>
+  const supabaseUrl = 'https://ppinkzelfepvrlwqhevm.supabase.co';
   const supabaseAnonKey = ' eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI'; // ← FULL KEY HERE
 
   const supabase = Supabase.createClient(supabaseUrl, supabaseAnonKey);
@@ -45,16 +45,16 @@
 
       if (error) {
         alert("Supabase Error:\n" + error.message);
-        console.error(error);
       } else {
         alert("Sign up successful! Please check your email.");
         window.location.href = "index.html";
       }
     } catch (err) {
-      alert("JavaScript Error:\n" + err.message);
-      console.error(err);
+      alert("JavaScript Error:\n" + err.message + "\n\nCheck your anon key and URL");
     }
   }
 </script>
+
+
 </body>
 </html>
