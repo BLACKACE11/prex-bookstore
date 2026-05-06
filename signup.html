@@ -18,41 +18,48 @@
   eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI
 
   <script>
-  const supabaseUrl = 'https://ppinkzelfepvrlwqhevm.supabase.co';
-  const supabaseAnonKey = ' eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI'; // ← FULL KEY HERE
-
-  const supabase = Supabase.createClient(supabaseUrl, supabaseAnonKey);
-
-  async function signUp() {
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value.trim();
-
-    if (!email || !password) {
-      alert("Please enter email and password");
-      return;
-    }
-
-    if (password.length < 6) {
-      alert("Password must be at least 6 characters");
-      return;
-    }
+  // Wait for the Supabase script to fully load
+  window.addEventListener('load', function() {
+    const supabaseUrl = 'https://ppinkzelfepvrlwqhevm.supabase.co';
+    const supabaseAnonKey = ' eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwaW5remVsZmVwdnJsd3FoZXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTA5MjcsImV4cCI6MjA5MjQ2NjkyN30.BqBWWlINcDLgmhe9fjmDrEL6uIC6YZ9SHgMGh1ghKQI'; // ← Paste your FULL anon key here
 
     try {
-      const { data, error } = await supabase.auth.signUp({
-        email: email,
-        password: password
-      });
+      const supabase = Supabase.createClient(supabaseUrl, supabaseAnonKey);
 
-      if (error) {
-        alert("Supabase Error:\n" + error.message);
-      } else {
-        alert("Sign up successful! Please check your email.");
-        window.location.href = "index.html";
-      }
-    } catch (err) {
-      alert("JavaScript Error:\n" + err.message + "\n\nCheck your anon key and URL");
+      window.signUp = async function() {
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+
+        if (!email || !password) {
+          alert("Please enter email and password");
+          return;
+        }
+
+        if (password.length < 6) {
+          alert("Password must be at least 6 characters");
+          return;
+        }
+
+        try {
+          const { data, error } = await supabase.auth.signUp({
+            email: email,
+            password: password
+          });
+
+          if (error) {
+            alert("Sign up failed: " + error.message);
+          } else {
+            alert("Sign up successful! Please check your email to confirm your account.");
+            window.location.href = "index.html";
+          }
+        } catch (err) {
+          alert("Error: " + err.message);
+        }
+      };
+    } catch (e) {
+      alert("Supabase failed to load. Check your internet or anon key.");
     }
-  }
+  });
 </script>
 
 
