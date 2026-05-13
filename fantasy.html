@@ -6,80 +6,60 @@
   <title>Thriller - Prex Bookstore</title>
   <link rel="stylesheet" href="catalogue.css">   <!-- Use the same CSS as catalogue -->
  <style> /* ==================== GENRE PAGE MOBILE FIX ==================== */
+/* === STRONG FIX FOR GENRE PAGES - 2 CARDS PER ROW ON MOBILE === */
 
-/* Header Improvements */
-.site-header {
-  background: #8b5a2b;
-  padding: 15px 20px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
+.books-section {
+  padding: 20px 15px;
 }
 
-.header-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: white;
-}
-
-/* Book Grid - 2 cards per row on mobile */
 .book-row {
   display: flex !important;
   flex-wrap: wrap !important;
-  gap: 16px !important;
+  gap: 15px !important;
   justify-content: center !important;
-  padding: 20px 15px;
 }
 
 .book-card {
   flex: 1 1 calc(50% - 8px) !important;
-  max-width: 172px !important;
+  max-width: 170px !important;
   background: white;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   text-align: center;
 }
 
 .book-card img {
   width: 100% !important;
-  height: 235px !important;
+  height: 230px !important;
   object-fit: cover !important;
 }
 
 .book-card h3 {
-  font-size: 0.98rem;
-  margin: 10px 8px 6px;
+  font-size: 0.95rem;
+  margin: 10px 6px 5px;
 }
 
 .book-card .price {
   color: #8b5a2b;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
 /* Very small phones */
 @media (max-width: 480px) {
   .book-card {
-    max-width: 165px !important;
+    max-width: 160px !important;
   }
   .book-card img {
-    height: 220px !important;
+    height: 215px !important;
   }
 }
 
-/* Desktop - 4 cards per row */
+/* Desktop - 4 cards */
 @media (min-width: 769px) {
   .book-card {
-    flex: 1 1 calc(25% - 16px) !important;
+    flex: 1 1 calc(25% - 15px) !important;
     max-width: 220px !important;
   }
   .book-card img {
