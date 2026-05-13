@@ -5,6 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thriller - Prex Bookstore</title>
   <link rel="stylesheet" href="catalogue.css">   <!-- Use the same CSS as catalogue -->
+ <style /* ==================== GENRE PAGE MOBILE FIX ==================== */
+
+/* Header Improvements */
+.site-header {
+  background: #8b5a2b;
+  padding: 15px 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* Book Grid - 2 cards per row on mobile */
+.book-row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 16px !important;
+  justify-content: center !important;
+  padding: 20px 15px;
+}
+
+.book-card {
+  flex: 1 1 calc(50% - 8px) !important;
+  max-width: 172px !important;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.book-card img {
+  width: 100% !important;
+  height: 235px !important;
+  object-fit: cover !important;
+}
+
+.book-card h3 {
+  font-size: 0.98rem;
+  margin: 10px 8px 6px;
+}
+
+.book-card .price {
+  color: #8b5a2b;
+  font-weight: bold;
+}
+
+/* Very small phones */
+@media (max-width: 480px) {
+  .book-card {
+    max-width: 165px !important;
+  }
+  .book-card img {
+    height: 220px !important;
+  }
+}
+
+/* Desktop - 4 cards per row */
+@media (min-width: 769px) {
+  .book-card {
+    flex: 1 1 calc(25% - 16px) !important;
+    max-width: 220px !important;
+  }
+  .book-card img {
+    height: 280px !important;
+  }
+}> </style>
 </head>
 <body>
 
