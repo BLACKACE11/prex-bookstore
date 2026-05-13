@@ -192,8 +192,6 @@ html{
     color: #81522e;
 }
 
-
-
 .book-row img {
     width: 150px;
     height: 220px;
@@ -220,7 +218,6 @@ html{
     border-radius: 50%;
     font-size: 20px;
     cursor: pointer;
-    
 }
 
 /* card */
@@ -245,7 +242,6 @@ html{
     padding: 10px;
     border-radius: 12px;
     transition: 0.3s;
-
 }
 
 .book-card1 {
@@ -303,7 +299,6 @@ html{
 
 /* hover effect */
 .book-card:hover {
-    
     transform: translateY(-8px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
